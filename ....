@@ -28,12 +28,12 @@ if isUserIdAllowed(player.UserId) then
     gui:Destroy()
     local CoreGui = game:GetService("StarterGui")
 
-    CoreGui:SetCore("SendNotification", {
-        Title = "Premium",
-        Text = "¡Acceso permitido! xd",
-        Duration = 2.5,
-    })
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/Sinnombrexd1/Xdd-/refs/heads/main/Protected_6037332547246446.txt"))()
+CoreGui:SetCore("SendNotification", {
+    Title = "Premium",
+    Text = "!!!",
+    Duration = 2.5,
+})
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/Sinnombrexd1/Hsyeqobsgekwmaam/refs/heads/main/hubs.lua"))()
     return
 end
 
@@ -214,7 +214,7 @@ end
 EnterButton.MouseButton1Click:Connect(function()
     if keyBox.Text:lower() == correctKey:lower() then
         gui:Destroy()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/Sinnombrexd1/Xdd-/refs/heads/main/Protected_6037332547246446.txt"))()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Sinnombrexd1/Hsyeqobsgekwmaam/refs/heads/main/hubs.lua"))()
     else
         blinkTextBox()
     end
