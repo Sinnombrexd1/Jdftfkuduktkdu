@@ -1,0 +1,279 @@
+local darkBlack = Color3.fromRGB(28, 27, 33)
+local grayishBlack = Color3.fromRGB(23, 24, 29)
+local lightBlue = Color3.fromRGB(101, 172, 255)
+local white = Color3.fromRGB(255, 255, 255)
+
+local allowedUserIds = {
+    2784663867, 1478666809, 1097473426, 987654321, 2345678901, 876543210,
+    3456789012, 765432109, 4567890123, 654321098, 5678901234, 543210987,
+    6789012345, 432109876, 7890123456, 321098765, 8901234567, 210987654,
+    9012345678, 109876543
+}
+
+local TweenService = game:GetService("TweenService")
+local player = game.Players.LocalPlayer
+local gui = Instance.new("ScreenGui")
+gui.Parent = player:WaitForChild("PlayerGui")
+
+local function isUserIdAllowed(userId)
+    for _, allowedId in ipairs(allowedUserIds) do
+        if userId == allowedId then
+            return true
+        end
+    end
+    return false
+end
+
+if isUserIdAllowed(player.UserId) then
+    gui:Destroy()
+    local CoreGui = game:GetService("StarterGui")
+
+    CoreGui:SetCore("SendNotification", {
+        Title = "Premium",
+        Text = "¡Acceso permitido! xd",
+        Duration = 2.5,
+    })
+    loadstring(game:HttpGet("https://pastebin.com/raw/3Pvr5Pfy"))()
+    return
+end
+
+local function addCorner(instance, radius)
+    local corner = Instance.new("UICorner")
+    corner.CornerRadius = UDim.new(0, radius)
+    corner.Parent = instance
+end
+
+local mainFrame = Instance.new("Frame")
+mainFrame.Size = UDim2.new(0.55, 0, 0.7, 0)
+mainFrame.Position = UDim2.new(0.5, 0, 1, 0)
+mainFrame.BackgroundTransparency = 0.4
+mainFrame.BackgroundColor3 = darkBlack
+mainFrame.BorderSizePixel = 3
+mainFrame.BorderColor3 = lightBlue
+mainFrame.Parent = gui
+addCorner(mainFrame, 10)
+
+local startTweenInfo = TweenInfo.new(1, Enum.EasingStyle.Bounce, Enum.EasingDirection.Out)
+local startTweenGoal = {Position = UDim2.new(0.225, 0, 0.15, 0), Size = UDim2.new(0.55, 0, 0.7, 0)}
+local startTween = TweenService:Create(mainFrame, startTweenInfo, startTweenGoal)
+startTween:Play()
+
+local closeButton = Instance.new("TextButton")
+closeButton.Size = UDim2.new(0.05, 0, 0.1, 0)
+closeButton.Position = UDim2.new(0.95, -5, 0, 5)
+closeButton.Text = "X"
+closeButton.TextSize = 15
+closeButton.BackgroundTransparency = 0.5
+closeButton.BackgroundColor3 = grayishBlack
+closeButton.TextColor3 = white
+closeButton.Parent = mainFrame
+addCorner(closeButton, 10)
+
+local configButton = Instance.new("TextButton")
+configButton.Size = UDim2.new(0.05, 0, 0.1, 0)
+configButton.Position = UDim2.new(0, 5, 0, 5)
+configButton.Text = "⚙️"
+configButton.TextSize = 15
+configButton.BackgroundTransparency = 0.5
+configButton.BackgroundColor3 = grayishBlack
+configButton.TextColor3 = white
+configButton.Parent = mainFrame
+addCorner(configButton, 10)
+
+local configFrame = Instance.new("Frame")
+configFrame.Size = UDim2.new(0.3, 0, 0.2, 0)
+configFrame.Position = UDim2.new(0.35, 0, 0.05, 0)
+configFrame.BackgroundTransparency = 0.4
+configFrame.BackgroundColor3 = darkBlack
+configFrame.Visible = false
+configFrame.Parent = gui
+addCorner(configFrame, 10)
+
+local spanishButton = Instance.new("TextButton")
+spanishButton.Size = UDim2.new(0.8, 0, 0.3, 0)
+spanishButton.Position = UDim2.new(0.1, 0, 0.15, 0)
+spanishButton.Text = "Español"
+spanishButton.TextSize = 14
+spanishButton.BackgroundTransparency = 0.5
+spanishButton.BackgroundColor3 = grayishBlack
+spanishButton.TextColor3 = white
+spanishButton.Parent = configFrame
+addCorner(spanishButton, 10)
+
+local englishButton = Instance.new("TextButton")
+englishButton.Size = UDim2.new(0.8, 0, 0.3, 0)
+englishButton.Position = UDim2.new(0.1, 0, 0.55, 0)
+englishButton.Text = "English"
+englishButton.TextSize = 14
+englishButton.BackgroundTransparency = 0.5
+englishButton.BackgroundColor3 = grayishBlack
+englishButton.TextColor3 = white
+englishButton.Parent = configFrame
+addCorner(englishButton, 10)
+
+local langTweenInfo = TweenInfo.new(0.5, Enum.EasingStyle.Quad, Enum.EasingDirection.Out)
+local langTweenGoal = {Position = UDim2.new(0.35, 0, 0.15, 0)}
+local langTween = TweenService:Create(configFrame, langTweenInfo, langTweenGoal)
+
+configButton.MouseButton1Click:Connect(function()
+    configFrame.Visible = not configFrame.Visible
+    if configFrame.Visible then
+        langTween:Play()
+    end
+end)
+
+local keyBox = Instance.new("TextBox")
+keyBox.Size = UDim2.new(0.6, 0, 0.1, 0)
+keyBox.Position = UDim2.new(0.2, 0, 0.4, 0)
+keyBox.PlaceholderText = "Enter Key..."
+keyBox.Text = ""
+keyBox.TextSize = 14
+keyBox.BackgroundColor3 = grayishBlack
+keyBox.BackgroundTransparency = 0.5
+keyBox.TextColor3 = white
+keyBox.Parent = mainFrame
+addCorner(keyBox, 10)
+
+local MiddleButton = Instance.new("TextButton")
+MiddleButton.Size = UDim2.new(0.2, 0, 0.1, 0)
+MiddleButton.Position = UDim2.new(0.4, 0, 0.65, 0)
+MiddleButton.Text = "Get key With discord"
+MiddleButton.TextSize = 6
+MiddleButton.BackgroundColor3 = grayishBlack
+MiddleButton.BackgroundTransparency = 0.5
+MiddleButton.TextColor3 = white
+MiddleButton.Parent = mainFrame
+addCorner(MiddleButton, 10)
+
+local getKeyButton = Instance.new("TextButton")
+getKeyButton.Size = UDim2.new(0.2, 0, 0.1, 0)
+getKeyButton.Position = UDim2.new(0.2, 0, 0.65, 0)
+getKeyButton.Text = "Get key with link/Ads"
+getKeyButton.TextSize = 6
+getKeyButton.BackgroundColor3 = grayishBlack
+getKeyButton.BackgroundTransparency = 0.5
+getKeyButton.TextColor3 = white
+getKeyButton.Parent = mainFrame
+addCorner(getKeyButton, 10)
+
+local EnterButton = Instance.new("TextButton")
+EnterButton.Size = UDim2.new(0.2, 0, 0.1, 0)
+EnterButton.Position = UDim2.new(0.6, 0, 0.65, 0)
+EnterButton.Text = "Enter"
+EnterButton.TextSize = 10
+EnterButton.BackgroundColor3 = grayishBlack
+EnterButton.BackgroundTransparency = 0.5
+EnterButton.TextColor3 = white
+EnterButton.Parent = mainFrame
+addCorner(EnterButton, 10)
+
+local footer = Instance.new("TextLabel")
+footer.Size = UDim2.new(0.5, 0, 0.08, 0)
+footer.Position = UDim2.new(0.02, 0, 0.92, 0)
+footer.Text = "By CapybaraScript"
+footer.TextSize = 10
+footer.BackgroundTransparency = 1
+footer.TextColor3 = white
+footer.Parent = mainFrame
+
+local correctKey = "1000"
+
+local function changeLanguage(lang)
+    if lang == "es" then
+        keyBox.PlaceholderText = "Ingrese la clave..."
+        getKeyButton.Text = "Obtener clave con anuncios"
+        EnterButton.Text = "Iniciar Sesión"
+        spanishButton.Text = "Español"
+        englishButton.Text = "Inglés"
+    else
+        keyBox.PlaceholderText = "Enter Key..."
+        getKeyButton.Text = "Get key with link/Ads"
+        EnterButton.Text = "Enter"
+        spanishButton.Text = "Español"
+        englishButton.Text = "English"
+    end
+end
+
+spanishButton.MouseButton1Click:Connect(function()
+    changeLanguage("es")
+end)
+
+englishButton.MouseButton1Click:Connect(function()
+    changeLanguage("en")
+end)
+
+local function blinkTextBox()
+    for i = 1, 3 do
+        keyBox.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+        wait(0.3)
+        keyBox.BackgroundColor3 = grayishBlack
+        wait(0.3)
+    end
+end
+
+EnterButton.MouseButton1Click:Connect(function()
+    if keyBox.Text:lower() == correctKey:lower() then
+        gui:Destroy()
+        loadstring(game:HttpGet("https://pastebin.com/raw/3Pvr5Pfy"))()
+    else
+        blinkTextBox()
+    end
+end)
+
+getKeyButton.MouseButton1Click:Connect(function()
+    setclipboard("lol")
+end)
+
+MiddleButton.MouseButton1Click:Connect(function()
+    setclipboard("https://discord.gg/XMzjfcdw7E")
+end)
+
+local function closeGuiWithAnimation()
+    closeButton:Destroy()
+    configButton:Destroy()
+    keyBox:Destroy()
+    getKeyButton:Destroy()
+    EnterButton:Destroy()
+    MiddleButton:Destroy()
+    footer:Destroy()
+
+    local shrinkTweenInfo = TweenInfo.new(0.5, Enum.EasingStyle.Quad, Enum.EasingDirection.Out)
+    local shrinkTweenGoal = {Size = UDim2.new(0.1, 0, 0.1, 0)}
+    local shrinkTween = TweenService:Create(mainFrame, shrinkTweenInfo, shrinkTweenGoal)
+
+    shrinkTween.Completed:Connect(function()
+        local shakeTweenInfo = TweenInfo.new(0.1, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut, 3, true)
+        local shakeTweenGoal1 = {Position = UDim2.new(mainFrame.Position.X.Scale + 0.02, 0, mainFrame.Position.Y.Scale, 0)}
+        local shakeTweenGoal2 = {Position = UDim2.new(mainFrame.Position.X.Scale - 0.02, 0, mainFrame.Position.Y.Scale, 0)}
+        
+        local shakeTween1 = TweenService:Create(mainFrame, shakeTweenInfo, shakeTweenGoal1)
+        local shakeTween2 = TweenService:Create(mainFrame, shakeTweenInfo, shakeTweenGoal2)
+
+        shakeTween1:Play()
+        shakeTween1.Completed:Connect(function()
+            shakeTween2:Play()
+        end)
+
+        shakeTween2.Completed:Connect(function()
+            local particles = Instance.new("ParticleEmitter")
+            particles.Parent = mainFrame
+            particles.Texture = "rbxassetid://98340377583067"
+            particles.Size = NumberSequence.new(0.5)
+            particles.Transparency = NumberSequence.new(0.5)
+            particles.Lifetime = NumberRange.new(1)
+            particles.Rate = 50
+            particles.Speed = NumberRange.new(10)
+            particles.VelocitySpread = 360
+            particles.Rotation = NumberRange.new(0, 360)
+            particles.Enabled = true
+
+            wait(0.3)
+            
+            gui:Destroy()
+        end)
+    end)
+
+    shrinkTween:Play()
+end
+
+closeButton.MouseButton1Click:Connect(closeGuiWithAnimation)
