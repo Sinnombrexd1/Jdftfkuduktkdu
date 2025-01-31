@@ -33,7 +33,7 @@ if isUserIdAllowed(player.UserId) then
         Text = "¡Acceso permitido! xd",
         Duration = 2.5,
     })
-    loadstring(game:HttpGet("https://pastebin.com/raw/3Pvr5Pfy"))()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/Sinnombrexd1/Xdd-/refs/heads/main/Protected_6037332547246446.txt"))()
     return
 end
 
@@ -214,7 +214,7 @@ end
 EnterButton.MouseButton1Click:Connect(function()
     if keyBox.Text:lower() == correctKey:lower() then
         gui:Destroy()
-        loadstring(game:HttpGet("https://pastebin.com/raw/3Pvr5Pfy"))()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Sinnombrexd1/Xdd-/refs/heads/main/Protected_6037332547246446.txt"))()
     else
         blinkTextBox()
     end
