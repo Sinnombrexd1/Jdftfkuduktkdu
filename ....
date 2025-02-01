@@ -176,7 +176,7 @@ EnterButton.MouseButton1Click:Connect(function()
 end)
 
 getKeyButton.MouseButton1Click:Connect(function()
-    setclipboard("lol")
+    setclipboard("https://paste-drop.com/paste/9Rkm4ySz1M")
 end)
 
 MiddleButton.MouseButton1Click:Connect(function()
