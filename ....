@@ -28,11 +28,11 @@ if isUserIdAllowed(player.UserId) then
     gui:Destroy()
     local CoreGui = game:GetService("StarterGui")
 
-CoreGui:SetCore("SendNotification", {
-    Title = "Premium",
-    Text = "!!!",
-    Duration = 2.5,
-})
+    CoreGui:SetCore("SendNotification", {
+        Title = "Premium",
+        Text = "!!!",
+        Duration = 2.5,
+    })
     loadstring(game:HttpGet("https://raw.githubusercontent.com/Sinnombrexd1/Hsyeqobsgekwmaam/refs/heads/main/hubs.lua"))()
     return
 end
@@ -41,6 +41,20 @@ local function addCorner(instance, radius)
     local corner = Instance.new("UICorner")
     corner.CornerRadius = UDim.new(0, radius)
     corner.Parent = instance
+end
+
+local function createButton(parent, size, position, text, textSize, backgroundColor, textColor, cornerRadius)
+    local button = Instance.new("TextButton")
+    button.Size = size
+    button.Position = position
+    button.Text = text
+    button.TextSize = textSize
+    button.BackgroundTransparency = 0.5
+    button.BackgroundColor3 = backgroundColor
+    button.TextColor3 = textColor
+    button.Parent = parent
+    addCorner(button, cornerRadius)
+    return button
 end
 
 local mainFrame = Instance.new("Frame")
@@ -58,27 +72,8 @@ local startTweenGoal = {Position = UDim2.new(0.225, 0, 0.15, 0), Size = UDim2.ne
 local startTween = TweenService:Create(mainFrame, startTweenInfo, startTweenGoal)
 startTween:Play()
 
-local closeButton = Instance.new("TextButton")
-closeButton.Size = UDim2.new(0.05, 0, 0.1, 0)
-closeButton.Position = UDim2.new(0.95, -5, 0, 5)
-closeButton.Text = "X"
-closeButton.TextSize = 15
-closeButton.BackgroundTransparency = 0.5
-closeButton.BackgroundColor3 = grayishBlack
-closeButton.TextColor3 = white
-closeButton.Parent = mainFrame
-addCorner(closeButton, 10)
-
-local configButton = Instance.new("TextButton")
-configButton.Size = UDim2.new(0.05, 0, 0.1, 0)
-configButton.Position = UDim2.new(0, 5, 0, 5)
-configButton.Text = "⚙️"
-configButton.TextSize = 15
-configButton.BackgroundTransparency = 0.5
-configButton.BackgroundColor3 = grayishBlack
-configButton.TextColor3 = white
-configButton.Parent = mainFrame
-addCorner(configButton, 10)
+local closeButton = createButton(mainFrame, UDim2.new(0.05, 0, 0.1, 0), UDim2.new(0.95, -5, 0, 5), "X", 10, grayishBlack, white, 5)
+local configButton = createButton(mainFrame, UDim2.new(0.05, 0, 0.1, 0), UDim2.new(0, 5, 0, 5), "⚙️", 10, grayishBlack, white, 5)
 
 local configFrame = Instance.new("Frame")
 configFrame.Size = UDim2.new(0.3, 0, 0.2, 0)
@@ -87,29 +82,10 @@ configFrame.BackgroundTransparency = 0.4
 configFrame.BackgroundColor3 = darkBlack
 configFrame.Visible = false
 configFrame.Parent = gui
-addCorner(configFrame, 10)
+addCorner(configFrame, 5)
 
-local spanishButton = Instance.new("TextButton")
-spanishButton.Size = UDim2.new(0.8, 0, 0.3, 0)
-spanishButton.Position = UDim2.new(0.1, 0, 0.15, 0)
-spanishButton.Text = "Español"
-spanishButton.TextSize = 14
-spanishButton.BackgroundTransparency = 0.5
-spanishButton.BackgroundColor3 = grayishBlack
-spanishButton.TextColor3 = white
-spanishButton.Parent = configFrame
-addCorner(spanishButton, 10)
-
-local englishButton = Instance.new("TextButton")
-englishButton.Size = UDim2.new(0.8, 0, 0.3, 0)
-englishButton.Position = UDim2.new(0.1, 0, 0.55, 0)
-englishButton.Text = "English"
-englishButton.TextSize = 14
-englishButton.BackgroundTransparency = 0.5
-englishButton.BackgroundColor3 = grayishBlack
-englishButton.TextColor3 = white
-englishButton.Parent = configFrame
-addCorner(englishButton, 10)
+local spanishButton = createButton(configFrame, UDim2.new(0.8, 0, 0.3, 0), UDim2.new(0.1, 0, 0.15, 0), "Español", 14, grayishBlack, white, 10)
+local englishButton = createButton(configFrame, UDim2.new(0.8, 0, 0.3, 0), UDim2.new(0.1, 0, 0.55, 0), "English", 14, grayishBlack, white, 10)
 
 local langTweenInfo = TweenInfo.new(0.5, Enum.EasingStyle.Quad, Enum.EasingDirection.Out)
 local langTweenGoal = {Position = UDim2.new(0.35, 0, 0.15, 0)}
@@ -127,45 +103,24 @@ keyBox.Size = UDim2.new(0.6, 0, 0.1, 0)
 keyBox.Position = UDim2.new(0.2, 0, 0.4, 0)
 keyBox.PlaceholderText = "Enter Key..."
 keyBox.Text = ""
-keyBox.TextSize = 14
+keyBox.TextSize = 13
 keyBox.BackgroundColor3 = grayishBlack
 keyBox.BackgroundTransparency = 0.5
 keyBox.TextColor3 = white
+keyBox.ClearTextOnFocus = false
 keyBox.Parent = mainFrame
-addCorner(keyBox, 10)
+addCorner(keyBox, 5)
 
-local MiddleButton = Instance.new("TextButton")
-MiddleButton.Size = UDim2.new(0.2, 0, 0.1, 0)
-MiddleButton.Position = UDim2.new(0.4, 0, 0.65, 0)
-MiddleButton.Text = "Get key With discord"
-MiddleButton.TextSize = 6
-MiddleButton.BackgroundColor3 = grayishBlack
-MiddleButton.BackgroundTransparency = 0.5
-MiddleButton.TextColor3 = white
-MiddleButton.Parent = mainFrame
-addCorner(MiddleButton, 10)
+local buttonWidth = 0.25
+local buttonHeight = 0.12
+local buttonSpacing = 0.05
 
-local getKeyButton = Instance.new("TextButton")
-getKeyButton.Size = UDim2.new(0.2, 0, 0.1, 0)
-getKeyButton.Position = UDim2.new(0.2, 0, 0.65, 0)
-getKeyButton.Text = "Get key with link/Ads"
-getKeyButton.TextSize = 6
-getKeyButton.BackgroundColor3 = grayishBlack
-getKeyButton.BackgroundTransparency = 0.5
-getKeyButton.TextColor3 = white
-getKeyButton.Parent = mainFrame
-addCorner(getKeyButton, 10)
+local totalButtonsWidth = (buttonWidth * 3) + (buttonSpacing * 2) -- Ancho total de los botones + espacios
+local startX = (1 - totalButtonsWidth) / 2
 
-local EnterButton = Instance.new("TextButton")
-EnterButton.Size = UDim2.new(0.2, 0, 0.1, 0)
-EnterButton.Position = UDim2.new(0.6, 0, 0.65, 0)
-EnterButton.Text = "Enter"
-EnterButton.TextSize = 10
-EnterButton.BackgroundColor3 = grayishBlack
-EnterButton.BackgroundTransparency = 0.5
-EnterButton.TextColor3 = white
-EnterButton.Parent = mainFrame
-addCorner(EnterButton, 10)
+local getKeyButton = createButton(mainFrame, UDim2.new(buttonWidth, 0, buttonHeight, 0), UDim2.new(startX, 0, 0.65, 0), "Get key with link/Ads", 7, grayishBlack, white, 5)
+local MiddleButton = createButton(mainFrame, UDim2.new(buttonWidth, 0, buttonHeight, 0), UDim2.new(startX + buttonWidth + buttonSpacing, 0, 0.65, 0), "Get key With discord", 7, grayishBlack, white, 5)
+local EnterButton = createButton(mainFrame, UDim2.new(buttonWidth, 0, buttonHeight, 0), UDim2.new(startX + (buttonWidth + buttonSpacing) * 2, 0, 0.65, 0), "Enter", 7, grayishBlack, white, 5)
 
 local footer = Instance.new("TextLabel")
 footer.Size = UDim2.new(0.5, 0, 0.08, 0)
@@ -236,6 +191,7 @@ local function closeGuiWithAnimation()
     EnterButton:Destroy()
     MiddleButton:Destroy()
     footer:Destroy()
+    configFrame:Destroy()
 
     local shrinkTweenInfo = TweenInfo.new(0.5, Enum.EasingStyle.Quad, Enum.EasingDirection.Out)
     local shrinkTweenGoal = {Size = UDim2.new(0.1, 0, 0.1, 0)}
@@ -255,20 +211,6 @@ local function closeGuiWithAnimation()
         end)
 
         shakeTween2.Completed:Connect(function()
-            local particles = Instance.new("ParticleEmitter")
-            particles.Parent = mainFrame
-            particles.Texture = "rbxassetid://98340377583067"
-            particles.Size = NumberSequence.new(0.5)
-            particles.Transparency = NumberSequence.new(0.5)
-            particles.Lifetime = NumberRange.new(1)
-            particles.Rate = 50
-            particles.Speed = NumberRange.new(10)
-            particles.VelocitySpread = 360
-            particles.Rotation = NumberRange.new(0, 360)
-            particles.Enabled = true
-
-            wait(0.3)
-            
             gui:Destroy()
         end)
     end)
