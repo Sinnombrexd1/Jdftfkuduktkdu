@@ -1,4 +1,12 @@
-local darkBlack = Color3.fromRGB(28, 27, 33)
+local StarterGui = game:GetService("StarterGui")
+
+StarterGui:SetCore("SendNotification", {
+    Title = "script INFO"; 
+    Text = "the script load.."; 
+    Duration = 5; 
+})
+
+local darkBlack = Color3.fromRGB(25, 25, 25)
 local grayishBlack = Color3.fromRGB(23, 24, 29)
 local lightBlue = Color3.fromRGB(101, 172, 255)
 local white = Color3.fromRGB(255, 255, 255)
@@ -59,13 +67,19 @@ end
 
 local mainFrame = Instance.new("Frame")
 mainFrame.Size = UDim2.new(0.55, 0, 0.7, 0)
-mainFrame.Position = UDim2.new(0.5, 0, 1, 0)
+mainFrame.Position = UDim2.new(1, 0, 1, 0)
 mainFrame.BackgroundTransparency = 0.4
 mainFrame.BackgroundColor3 = darkBlack
 mainFrame.BorderSizePixel = 3
 mainFrame.BorderColor3 = lightBlue
 mainFrame.Parent = gui
-addCorner(mainFrame, 10)
+addCorner(mainFrame, 5)
+
+local border = Instance.new("UIStroke")
+    border.Parent = mainFrame
+    border.Thickness = 2
+    border.Color = Color3.fromRGB(25, 25, 25)
+    border.Transparency = 0.3
 
 local startTweenInfo = TweenInfo.new(1, Enum.EasingStyle.Bounce, Enum.EasingDirection.Out)
 local startTweenGoal = {Position = UDim2.new(0.225, 0, 0.15, 0), Size = UDim2.new(0.55, 0, 0.7, 0)}
