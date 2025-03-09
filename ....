@@ -131,7 +131,7 @@ footer.BackgroundTransparency = 1
 footer.TextColor3 = white
 footer.Parent = mainFrame
 
-local correctKey = "1000"
+local correctKey = "joinusindiscord"
 
 local function changeLanguage(lang)
     if lang == "es" then
